@@ -1,0 +1,50 @@
+<!-- Se superpone a la tienda sin modificar su contenido. -->
+<div class="capa-login" (keydown.escape)="cerrar.emit()">
+  <main class="pantalla-login" role="dialog" aria-modal="true" aria-labelledby="titulo-login">
+    <!-- Video de fondo del login original de OOZMA KAPPA. -->
+    <video class="video-fondo" autoplay muted loop playsinline aria-hidden="true">
+      <source src="/videos/login-background.mp4" type="video/mp4" />
+    </video>
+
+    <button type="button" class="cerrar-login" (click)="cerrar.emit()" aria-label="Cerrar inicio de sesión">
+      &times;
+    </button>
+
+    <section class="tarjeta">
+      <h1 id="titulo-login">PAPELERÍA</h1>
+      <h2>CONTROL DE ACCESOS</h2>
+      <p class="introduccion">Ingresa tu correo y contraseña</p>
+      <hr />
+
+      <form (submit)="ingresar($event, correo, contrasena)" novalidate>
+        <label class="solo-lectores" for="login-correo">Correo electrónico</label>
+        <input #correo id="login-correo" name="correo" type="email"
+               placeholder="Correo electrónico" autocomplete="username" required />
+
+        <label class="solo-lectores" for="login-contrasena">Contraseña</label>
+        <input #contrasena id="login-contrasena" name="contrasena"
+               [type]="mostrarContrasena() ? 'text' : 'password'"
+               placeholder="Contraseña" autocomplete="current-password" required />
+
+        <button class="boton-ingresar" type="submit">INGRESAR</button>
+
+        <div class="acciones-secundarias">
+          <button type="button" (click)="limpiar(correo, contrasena)">Limpiar campos</button>
+          <button type="button" (click)="alternarContrasena()" [attr.aria-pressed]="mostrarContrasena()">
+            {{ mostrarContrasena() ? 'Ocultar contraseña' : 'Mostrar contraseña' }}
+          </button>
+        </div>
+
+        <div class="acciones-enlaces">
+          <button type="button" (click)="informarRegistro()">Crear usuario</button>
+          <button type="button" (click)="informarRecuperacion()">Recuperar / Desbloquear</button>
+        </div>
+
+        <p class="mensaje" [class.error]="tipoMensaje() === 'error'"
+           [class.info]="tipoMensaje() === 'info'" role="status" aria-live="polite">
+          {{ mensaje() }}
+        </p>
+      </form>
+    </section>
+  </main>
+</div>

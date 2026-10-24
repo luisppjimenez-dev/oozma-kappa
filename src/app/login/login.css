@@ -1,0 +1,138 @@
+/* Estilos limitados al login: no afectan al catálogo ni al encabezado. */
+:host {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+* { box-sizing: border-box; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+.capa-login {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  background: rgba(3, 15, 35, 0.78);
+  padding: 16px;
+}
+
+.pantalla-login {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  width: min(430px, 100%);
+  min-height: min(650px, calc(100vh - 32px));
+  padding: 30px 20px;
+  background: #161b25;
+  color: #fff;
+  box-shadow: 0 20px 65px rgba(0, 0, 0, 0.4);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.video-fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.cerrar-login {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 2;
+  border: 0;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background: rgba(9, 16, 31, 0.9);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.cerrar-login:focus-visible { outline: 3px solid #79c453; outline-offset: 2px; }
+
+.tarjeta {
+  width: 100%;
+  max-width: 355px;
+  padding: 30px 28px;
+  text-align: center;
+  background: rgba(15, 20, 30, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 22px;
+  backdrop-filter: blur(5px);
+}
+
+h1 { margin: 0 0 7px; font-size: 34px; color: white; }
+h2 { margin: 0 0 10px; font-size: 17px; color: white; }
+.introduccion { color: #d5dae3; font-size: 12px; }
+hr { border: 0; border-top: 1px solid #6b717c; margin: 17px 0; }
+form { display: grid; gap: 12px; }
+input {
+  width: 100%;
+  min-height: 42px;
+  padding: 11px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  color: #1f2937;
+  font-size: 13px;
+}
+input:focus-visible { border-color: #79c453; box-shadow: 0 0 0 3px #79c45366; }
+.boton-ingresar {
+  border: 0;
+  border-radius: 8px;
+  padding: 12px;
+  background: #467c2a;
+  color: white;
+  font-weight: bold;
+}
+.boton-ingresar:hover { background: #619e44; }
+.acciones-secundarias, .acciones-enlaces {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.acciones-secundarias button {
+  padding: 7px 9px;
+  border: 0;
+  border-radius: 6px;
+  background: #edf1f6;
+  color: #273345;
+  font-size: 10px;
+}
+.acciones-enlaces button {
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: #b9d8ff;
+  text-decoration: underline;
+  font-size: 12px;
+}
+.mensaje { min-height: 30px; margin: 0; font-size: 12px; line-height: 1.5; }
+.mensaje.error { color: #ffaaaa; }
+.mensaje.info { color: #cce9ff; }
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@media (max-width: 440px) {
+  .capa-login { padding: 0; }
+  .pantalla-login { min-height: 100vh; }
+  .tarjeta { padding: 27px 20px; }
+}
